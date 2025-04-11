@@ -8,7 +8,7 @@ export default function Page() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-16 py-1 bg-white text-gray-900 shadow-lg rounded-xl space-y-[2px] print:space-y-[2px] print:py-0 print:px-[6px] print:shadow-none print:rounded-none print:bg-white print:text-black text-[12pt] font-normal leading-snug">
+    <div className="max-w-5xl mx-auto px-16 py-2 bg-white text-gray-900 shadow-lg rounded-xl space-y-[2px] print:space-y-[2px] print:py-0 print:px-[6px] print:shadow-none print:rounded-none print:bg-white print:text-black text-[12pt] font-normal leading-snug">
       <div className="flex justify-end print:hidden">
         <button
           onClick={handlePrint}
