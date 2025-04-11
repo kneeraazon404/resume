@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+/* Custom print styling */
+@media print {
+  @page {
+    margin: 0;
+    /* Removes browser headers/footers like date and URL */
+  }
+
+  body {
+    margin: 1in;
+    /* Optional: add inner margin to the page */
+  }
+
+  button,
+  .print\:hidden {
+    display: none !important;
+    /* Hides elements like the Print button */
+  }
+}
