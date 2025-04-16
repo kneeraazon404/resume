@@ -19,7 +19,7 @@ export default function Page() {
       </div>
 
       <header className="flex flex-col sm:flex-row items-end gap-2 sm:gap-4 py-4 ">
-        <Image src="/profile.jpg" alt="Nirajan Karki" width={120} height={120} className="rounded-full border-4 border-blue-900" />
+        <Image src="../assets/dipi.jpg" alt="Nirajan Karki" width={120} height={120} className="rounded-full border-4 border-blue-900" />
         <div className="text-left text-sm sm:text-base">
           <h1 className="text-3xl font-bold text-blue-900">Nirajan Karki</h1>
           <h2 className="text-xl text-blue-600 opacity-70">Senior Python Developer · Full-Stack Engineer</h2>
