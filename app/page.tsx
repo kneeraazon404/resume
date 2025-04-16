@@ -19,18 +19,26 @@ export default function Page() {
       </div>
 
       <header className="flex flex-col sm:flex-row items-end gap-2 sm:gap-4 py-4 ">
-        <Image src="../assets/dipi.jpg" alt="Nirajan Karki" width={120} height={120} className="rounded-full border-4 border-blue-900" />
+        <div className="flex justify-center items-center">
+          <Image
+        src="/profile.jpg"
+        alt="Nirajan Karki"
+        width={150}
+        height={150}
+        className="rounded-full border-4 border-blue-900 object-cover"
+          />
+        </div>
         <div className="text-left text-sm sm:text-base">
           <h1 className="text-3xl font-bold text-blue-900">Nirajan Karki</h1>
           <h2 className="text-xl text-blue-600 opacity-70">Senior Python Developer · Full-Stack Engineer</h2>
           
           <div className="text-sm">
-            <p className="mt-2">
-            📍 Kathmandu, Nepal · 📧 <a className="text-blue-700 hover:underline" href="mailto:kneeraazon@gmail.com" target='_blank'>kneeraazon@gmail.com</a> · 📞 9844395719
-            </p>
-            <p >
-              🌐 <a className="text-blue-700 hover:underline" target='_blank' href="http://kneeraazon.com/">kneeraazon.com</a> · 💻 <a className="text-blue-700 hover:underline" target='_blank' href="https://github.com/kneeraazon404">GitHub</a> · 🔗 <a className="text-blue-700 hover:underline" target='_blank' href="https://linkedin.com/in/kneeraazon">LinkedIn</a>
-            </p></div>
+        <p className="mt-2">
+        📍 Kathmandu, Nepal · 📧 <a className="text-blue-700 hover:underline" href="mailto:kneeraazon@gmail.com" target='_blank'>kneeraazon@gmail.com</a> · 📞 9844395719
+        </p>
+        <p >
+          🌐 <a className="text-blue-700 hover:underline" target='_blank' href="http://kneeraazon.com/">kneeraazon.com</a> · 💻 <a className="text-blue-700 hover:underline" target='_blank' href="https://github.com/kneeraazon404">GitHub</a> · 🔗 <a className="text-blue-700 hover:underline" target='_blank' href="https://linkedin.com/in/kneeraazon">LinkedIn</a>
+        </p></div>
         </div>
       </header>
 
@@ -83,7 +91,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold text-blue-900 border-b py-4 mt-2">Experience</h2>
+        <h2 className="text-xl font-semibold text-blue-900 border-b py-2 mt-2">Experience</h2>
 
         <div className="space-y-1 mt-6">
           <h3 className="text-md font-semibold text-blue-900">Freelance Python Developer · Upwork</h3>
