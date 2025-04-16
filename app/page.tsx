@@ -83,7 +83,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold text-blue-900 border-b py-1">Experience</h2>
+        <h2 className="text-xl font-semibold text-blue-900 border-b py-4 mt-2">Experience</h2>
 
         <div className="space-y-1 mt-6">
           <h3 className="text-md font-semibold text-blue-900">Freelance Python Developer · Upwork</h3>
