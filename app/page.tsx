@@ -87,7 +87,7 @@ export default function Page() {
       title: "Full-stack Developer",
       company: "Pathway Technologies and Services",
       location: "", // Location can be added if available
-      period: "August 2021 – September 2022",
+      period: "August 2020 – September 2022",
       details: [
         "Proficient in Python with a strong focus on Django and Django REST Framework (DRF).",
         "Played a key role in developing innovative solutions using Django and DRF, leveraging expertise in backend development.",
@@ -98,10 +98,10 @@ export default function Page() {
       ],
     },
     {
-      title: "Web Developer",
+      title: "Web Developer - Part Time",
       company: "Merohealth",
       location: "",
-      period: "January 2020 – May 2021",
+      period: "January 2019 – May 2021",
       details: [
         "Developed full-stack solutions using Django, DRF, React, and Next.js, with TailwindCSS for styling.",
         "Built and maintained scalable web applications, ensuring high performance and responsiveness.",
@@ -115,7 +115,7 @@ export default function Page() {
       title: "Web Developer",
       company: "Food & Beverage Nepal",
       location: "",
-      period: "February 2018 – February 2020",
+      period: "February 2018 – February 2019",
       details: [
         "Operated as a solo developer for a startup, responsible for full front-end and backend development.",
         "Developed full-stack solutions using Django, DRF, React, and Next.js with TailwindCSS. This included the \"FoodandBeverage\" website showcasing options in Nepal.",
