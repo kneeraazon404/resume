@@ -222,22 +222,22 @@ export default function Page() {
 
             <div className="text-xs sm:text-sm text-gray-600 mt-2 space-y-1">
               <p>
-                📍 Kathmandu, Nepal
+               Kathmandu, Nepal
               </p>
               <p>
-                📧 <a className="text-blue-700 hover:underline" href="mailto:kneeraazon@gmail.com" target='_blank' rel="noopener noreferrer">kneeraazon@gmail.com</a>
-                <span className="mx-1 print:hidden">|</span> <span className="sm:hidden"><br/></span>📞 +977-9844395719
+                <a className="text-blue-700 hover:underline" href="mailto:kneeraazon@gmail.com" target='_blank' rel="noopener noreferrer">kneeraazon@gmail.com</a>
+                <span className="mx-1 print:hidden">|</span> <span className="sm:hidden"><br/></span> +977-9844395719
               </p>
               <p >
-                🌐 <a className="text-blue-700 hover:underline" target='_blank' rel="noopener noreferrer" href="https://kneeraazon.com">kneeraazon.com</a>
-                <span className="mx-1 print:hidden">|</span> <span className="sm:hidden"><br/></span>💻 <a className="text-blue-700 hover:underline" target='_blank' rel="noopener noreferrer" href="https://github.com/kneeraazon404">GitHub</a>
-                <span className="mx-1 print:hidden">|</span> <span className="sm:hidden"><br/></span>🔗 <a className="text-blue-700 hover:underline" target='_blank' rel="noopener noreferrer" href="https://linkedin.com/in/kneeraazon">LinkedIn</a>
+                 <a className="text-blue-700 hover:underline" target='_blank' rel="noopener noreferrer" href="https://kneeraazon.com">kneeraazon.com</a>
+                <span className="mx-1 print:hidden">|</span> <span className="sm:hidden"><br/></span><a className="text-blue-700 hover:underline" target='_blank' rel="noopener noreferrer" href="https://github.com/kneeraazon404">GitHub</a>
+                <span className="mx-1 print:hidden">|</span> <span className="sm:hidden"><br/></span><a className="text-blue-700 hover:underline" target='_blank' rel="noopener noreferrer" href="https://linkedin.com/in/kneeraazon">LinkedIn</a>
               </p>
             </div>
           </div>
         </header>
 
-        <Section title="📋 Professional Summary">
+        <Section title=" Professional Summary">
           <p className="text-sm leading-relaxed text-gray-700">{professionalSummary}</p>
         </Section>
 
@@ -254,15 +254,15 @@ export default function Page() {
           </div>
         </Section>
 
-        <Section title="💼 Professional Experience">
+        <Section title=" Professional Experience">
           {experiences.map((exp, index) => (
             <Entry key={index} title={`${exp.title} `} subtitle={`${exp.company} ${exp.location ? `(${exp.location})` : ''} | ${exp.period}`} details={exp.details} />
           ))}
         </Section>
 
-        <Section title="🚀 Selected Projects">
+        <Section title=" Selected Projects">
           {projects.map((project, index) => (
-             <div key={index} className="mb-4"> {/* Use div instead of Entry if no bullet points needed directly */}
+             <div key={index} className="mb-4">
                 <h3 className="text-md font-semibold text-blue-800">{project.title}</h3>
                 <p className="text-sm text-gray-700">{project.description}</p>
             </div>
@@ -270,13 +270,13 @@ export default function Page() {
         </Section>
 
 
-        <Section title="🎓 Education">
+        <Section title=" Education">
           {education.map((edu, index) => (
             <Entry key={index} title={edu.degree} subtitle={`${edu.institution}, ${edu.location} | ${edu.period}`} />
           ))}
         </Section>
 
-        <Section title="📜 Certifications">
+        <Section title=" Certifications">
           {certifications.map((cert, index) => (
             <div key={index} className="mb-2 text-sm">
                 <p className="font-medium text-gray-700">{cert.name} {cert.issuer && <span className="text-gray-600 italic"> – {cert.issuer}</span>}</p>
@@ -284,7 +284,7 @@ export default function Page() {
           ))}
         </Section>
 
-        <Section title="👨‍💻 Additional Training">
+        <Section title="Additional Training">
           {training.map((train, index) => (
              <div key={index} className="mb-2 text-sm">
                 <h3 className="font-semibold text-blue-800">{train.name}</h3>
