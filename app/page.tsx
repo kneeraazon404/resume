@@ -184,7 +184,7 @@ export default function Page() {
   const certifications: Certification[] = [
     { name: "React - The Complete Guide 2024 (incl. Next.js, Redux)", issuer: "Udemy, August 2024" },
     { name: "Build a Backend REST API with Python & Django - Advanced", issuer: "Udemy, July 2023" },
-    { name: "REST APIs with Flask and Python in 2024", issuer: "" }, // Issuer can be added if known
+    { name: "REST APIs with Flask and Python in 2024", issuer: "Udemy, March 2023" }, // Issuer can be added if known
   ];
 
   interface Training {
@@ -241,7 +241,7 @@ export default function Page() {
           <p className="text-sm leading-relaxed text-gray-700">{professionalSummary}</p>
         </Section>
 
-        <Section title="🔧 Technical Skills">
+        <Section title="Technical Skills">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-sm">
             {skills.map((skillSet) => (
               <div key={skillSet.category} className="bg-blue-50 p-3 rounded-md shadow-sm">
