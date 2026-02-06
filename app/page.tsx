@@ -11,7 +11,7 @@ interface SectionProps {
 
 const Section: React.FC<SectionProps> = ({ title, children, className = '' }) => (
   <section className={`mb-6 print:mb-4 ${className}`}>
-    <h2 className="text-xl font-bold text-slate-800 uppercase tracking-wide border-b-2 border-slate-300 pb-1 mb-4 print:text-lg print:mb-2 print:pb-0">
+    <h2 className="text-xl font-bold text-slate-900 uppercase tracking-wide border-b border-slate-900 pb-1 mb-4 print:text-lg print:mb-2 print:pb-0">
       {title}
     </h2>
     {children}
@@ -206,7 +206,7 @@ export default function Page() {
           </button>
         </div>
 
-        <header className="border-b-2 border-slate-200 pb-6 mb-8 print:pb-4 print:mb-6">
+        <header className="pb-6 mb-8 print:pb-4 print:mb-6">
           <h1 className="text-4xl font-extrabold text-slate-900 mb-2 tracking-tight print:text-3xl">Nirajan Karki</h1>
           <h2 className="text-xl font-medium text-blue-700 print:text-lg mb-6">Senior Python Developer · Full-Stack Engineer</h2>
 
