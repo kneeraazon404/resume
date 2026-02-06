@@ -1,297 +1,338 @@
 'use client';
 
+import { Mail, Phone, MapPin, Globe, Github, Linkedin } from 'lucide-react';
+import { useRef } from 'react';
 
-// Helper component for sections to maintain consistency
 interface SectionProps {
   title: string;
   children: React.ReactNode;
   className?: string;
 }
 
-const Section: React.FC<SectionProps> = ({ title, children, className = "" }) => (
-  <section className={`py-3 ${className}`}>
-    <h2 className="text-xl font-semibold text-blue-900 border-b-2 border-blue-200 pb-2 mb-4">{title}</h2>
+const Section: React.FC<SectionProps> = ({ title, children, className = '' }) => (
+  <section className={`mb-6 print:mb-4 ${className}`}>
+    <h2 className="text-xl font-bold text-slate-800 uppercase tracking-wide border-b-2 border-slate-300 pb-1 mb-4 print:text-lg print:mb-2 print:pb-0">
+      {title}
+    </h2>
     {children}
   </section>
 );
 
-// Helper component for individual entries within sections (like jobs, projects)
 interface EntryProps {
   title: string;
-  subtitle?: string;
+  subtitle: string;
   details?: string[];
-  children?: React.ReactNode;
+  period?: string;
 }
 
-const Entry: React.FC<EntryProps> = ({ title, subtitle, details, children }) => (
-  <div className="mb-5">
-    <h3 className="text-md font-semibold text-blue-800">{title}</h3>
-    {subtitle && <p className="text-sm italic text-gray-600 mb-1">{subtitle}</p>}
-    {details && Array.isArray(details) && (
-      <ul className="list-disc list-inside text-sm space-y-1 text-gray-700">
-        {details.map((detail, index) => <li key={index}>{detail}</li>)}
+const Entry: React.FC<EntryProps> = ({ title, subtitle, details }) => (
+  <div className="mb-4 break-inside-avoid print:mb-2 text-justify">
+    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-1">
+      <h3 className="text-xl font-bold text-slate-900 leading-tight print:text-base">{title}</h3>
+    </div>
+    <div className="text-lg font-medium text-blue-700 mb-2 print:text-sm print:mb-1 print:text-black">
+      {subtitle}
+    </div>
+    {details && details.length > 0 && (
+      <ul className="list-disc list-outside ml-5 space-y-1 text-slate-700 text-base print:text-xs">
+        {details.map((detail, index) => (
+          <li key={index} className="leading-relaxed pl-1">{detail}</li>
+        ))}
       </ul>
     )}
-    {children}
   </div>
 );
 
+const professionalSummary = "Senior Python Developer and Full-Stack Engineer with 7+ years of experience architecting scalable web applications and AI-powered solutions. Expert in Python, Django, FastAPI, and modern JavaScript frameworks like React and Next.js. Proven track record of delivering 80+ projects, optimizing database performance, and integrating advanced AI technologies.";
+
+const skills = [
+  { category: "Languages", items: ["Python", "JavaScript", "TypeScript"] },
+  { category: "Backend", items: ["Django", "FastAPI", "Celery"] },
+  { category: "Frontend", items: ["React", "Next.js", "TailwindCSS"] },
+  { category: "Databases", items: ["PostgreSQL", "MongoDB", "VectorDB"] },
+  { category: "Cloud & DevOps", items: ["AWS (EC2, S3, Lambda)", "Docker", "CI/CD"] },
+  { category: "AI/ML", items: ["GenAI", "LangChain", "RAG"] },
+  { category: "Others", items: ["RESTful APIs", "Microservices", "Async Programming"] },
+];
+
+interface Experience {
+  title: string;
+  company: string;
+  location: string;
+  period: string;
+  details: string[];
+}
+
+const experiences: Experience[] = [
+  {
+    title: "Senior Python/Django Developer",
+    company: "Upwork (Top-Rated Freelancer)",
+    location: "Remote",
+    period: "Nov 2021 – Present",
+    details: [
+      "Architected and delivered 80+ full-stack applications for global clients, maintaining a 100% Job Success Score.",
+      "Built scalable REST APIs using Django, FastAPI, and Flask, handling 10K+ daily requests with 99.9% uptime.",
+      "Implemented AI-powered solutions using GenAI and LangChain, reducing manual processing by 60%.",
+      "Optimized PostgreSQL/MongoDB queries and deployed containerized apps on AWS with automated CI/CD.",
+    ],
+  },
+  {
+    title: "Full-Stack Developer",
+    company: "Pathway Technologies and Services",
+    location: "Kathmandu, Nepal",
+    period: "Aug 2020 – Sep 2022",
+    details: [
+      "Led development of enterprise Django applications serving 5,000+ active users.",
+      "Designed RESTful APIs with DRF, reducing frontend-backend integration time by 35%.",
+      "Optimized MySQL and MongoDB schemas, improving query performance by 50%.",
+      "Mentored junior developers and conducted code reviews to maintain code quality standards.",
+    ],
+  },
+  {
+    title: "Full-Stack Developer (Part-Time)",
+    company: "Merohealth",
+    location: "Kathmandu, Nepal",
+    period: "Jan 2019 – May 2021",
+    details: [
+      "Built a healthcare dashboard serving 10,000+ users with HIPAA-compliant data handling.",
+      "Developed full-stack features using Django, React, and Next.js with TailwindCSS.",
+      "Implemented secure authentication and role-based access control systems.",
+    ],
+  },
+  {
+    title: "Web Developer",
+    company: "Food & Beverage Nepal",
+    location: "Kathmandu, Nepal",
+    period: "Feb 2018 – Feb 2019",
+    details: [
+      "Sole developer responsible for end-to-end development of the company's web platform.",
+      "Built responsive web applications serving 2,000+ monthly visitors using Django and React.",
+      "Implemented RESTful APIs and optimized database performance for scalability.",
+    ],
+  },
+];
+
+interface ProjectData {
+  title: string;
+  tech: string;
+  description: string;
+}
+
+const projects: ProjectData[] = [
+  {
+    title: "Real-time Speech Transcription System",
+    tech: "FastAPI, WebSockets, Whisper AI",
+    description: "Built secure, low-latency voice processing with sub-second transcription delay using custom backend integration.",
+  },
+  {
+    title: "AI-Powered Career Assistant",
+    tech: "GenAI, LangChain, RAG",
+    description: "Developed resume analysis tool improving user job shortlist rates by 30% through contextual insights.",
+  },
+  {
+    title: "Stock & Options Analytics Platform",
+    tech: "AWS Lambda, Docker, Polygon.io API",
+    description: "Engineered real-time financial data pipeline with async processing and live analytics dashboard.",
+  },
+];
+
+interface Education {
+  degree: string;
+  institution: string;
+  location: string;
+  period: string;
+}
+
+const education: Education[] = [
+  {
+    degree: "Bachelor of Engineering (BE), Electronics and Communications",
+    institution: "Tribhuvan University, IOE, Western Regional Campus",
+    location: "Pokhara, Nepal",
+    period: "2016 – 2021",
+  },
+  {
+    degree: "Higher Secondary – Science",
+    institution: "Einstein Academy",
+    location: "Lalitpur, Nepal",
+    period: "2014 – 2016",
+  },
+];
+
+interface Certification {
+  name: string;
+  issuer: string;
+}
+
+const certifications: Certification[] = [
+  { name: "React - The Complete Guide 2024 (incl. Next.js, Redux)", issuer: "Udemy, August 2024" },
+  { name: "Build a Backend REST API with Python & Django - Advanced", issuer: "Udemy, July 2023" },
+  { name: "REST APIs with Flask and Python in 2024", issuer: "Udemy, March 2023" },
+];
+
+interface Training {
+  name: string;
+  description: string;
+  issuer: string;
+}
+
+const training: Training[] = [
+  {
+    name: "Full Stack Development Bootcamp",
+    description: "Intensive six-month program focusing on Django, Django REST Framework, and ReactJS.",
+    issuer: "IWA Workshop",
+  },
+];
+
 export default function Page() {
+  const contentRef = useRef<HTMLDivElement>(null);
+
   const handlePrint = (): void => {
     window.print();
   };
 
-  const professionalSummary: string = "As a seasoned Senior Python Developer and Full-Stack Engineer with over 7 years of professional experience, I specialize in transforming complex ideas into powerful, scalable applications. My expertise spans designing, developing, and deploying web applications, backend systems, and automation solutions. Proficient in Python, Django, FastAPI, RESTful APIs, PostgreSQL, MongoDB, React, Next.js, and AWS. Proven ability in developing real-time financial data applications, implementing asynchronous programming, and integrating AI/ML technologies (OpenAI GPT-4, LangChain, RAG). Adept at leading code reviews, optimizing database performance, and delivering tailored software solutions for a diverse clientele, including 80+ successful projects on Upwork. I am a versatile and reliable partner for your next big project.";
-
-  interface SkillSet {
-    category: string;
-    items: string[];
-  }
-
-  const skills: SkillSet[] = [
-    { category: "Programming Languages", items: ["Python", "JavaScript", "TypeScript", "SQL"] },
-    { category: "Backend Frameworks & Libraries", items: ["Django", "Django REST Framework (DRF)", "FastAPI", "Flask", "Celery"] },
-    { category: "Frontend Frameworks & Libraries", items: ["React", "Next.js", "TailwindCSS"] },
-    { category: "Databases", items: ["PostgreSQL", "MongoDB", "Redis", "Database Design & Management"] },
-    { category: "Cloud & DevOps", items: ["AWS (EC2, S3, Lambda)", "Docker", "Nginx", "Apache", "GitHub Actions", "Cloud Deployment"] },
-    { category: "AI/ML & Data Science", items: ["OpenAI GPT-4", "LangChain", "RAG", "NLP", "Pandas", "NumPy", "Matplotlib"] },
-    { category: "Other", items: ["RESTful API Development", "Data Structures & Algorithms", "Asynchronous Programming", "Web Scraping", "Code Optimization & Debugging", "Unit & Integration Testing", "Agile Methodologies"] },
-  ];
-
-  interface Experience {
-    title: string;
-    company: string;
-    location: string;
-    period: string;
-    details: string[];
-  }
-
-  const experiences: Experience[] = [
-    {
-      title: "Senior Python/Django Developer",
-      company: "Upwork (Freelance)",
-      location: "Nepal",
-      period: "November 2021 – Present",
-      details: [
-        "Developed scalable backend APIs using Python (Django, DRF), FastAPI, and Flask.",
-        "Led the architectural design of robust full-stack applications for over 80+ clients.",
-        "Designed and implemented efficient database schemas with PostgreSQL; optimized MongoDB performance.",
-        "Built RESTful APIs for seamless frontend (React, Next.js) integration.",
-        "Developed intelligent chatbots and search engines using OpenAI; implemented NLP-powered features with LangChain and RAG systems.",
-        "Designed and maintained secure authentication and authorization systems.",
-        "Built and deployed applications on various cloud platforms, primarily AWS.",
-        "Conducted code reviews, established best practices, and ensured code quality through unit and integration tests.",
-      ],
-    },
-    {
-      title: "Full-stack Developer",
-      company: "Pathway Technologies and Services",
-      location: "", // Location can be added if available
-      period: "August 2020 – September 2022",
-      details: [
-        "Proficient in Python with a strong focus on Django and Django REST Framework (DRF).",
-        "Played a key role in developing innovative solutions using Django and DRF, leveraging expertise in backend development.",
-        "Built and maintained scalable web applications using Django, ensuring high performance and responsiveness.",
-        "Implemented RESTful APIs with Django REST Framework, streamlining data retrieval and manipulation.",
-        "Designed and optimized database schemas in Django with MySQL and MongoDB to support complex queries and transactions.",
-        "Collaborated with cross-functional teams to ensure seamless integration of new features and improvements in Django-based applications.",
-      ],
-    },
-    {
-      title: "Web Developer - Part Time",
-      company: "Merohealth",
-      location: "",
-      period: "January 2019 – May 2021",
-      details: [
-        "Developed full-stack solutions using Django, DRF, React, and Next.js, with TailwindCSS for styling.",
-        "Built and maintained scalable web applications, ensuring high performance and responsiveness.",
-        "Implemented RESTful APIs with DRF and integrated them with React/Next.js frontends.",
-        "Designed and optimized database schemas (MySQL, MongoDB).",
-        "Collaborated with cross-functional teams on Django-based full-stack applications.",
-        "Contributed to building a healthcare dashboard for 10K+ users, ensuring data privacy and security compliance.",
-      ],
-    },
-    {
-      title: "Web Developer",
-      company: "Food & Beverage Nepal",
-      location: "",
-      period: "February 2018 – February 2019",
-      details: [
-        "Operated as a solo developer for a startup, responsible for full front-end and backend development.",
-        "Developed full-stack solutions using Django, DRF, React, and Next.js with TailwindCSS. This included the \"FoodandBeverage\" website showcasing options in Nepal.",
-        "Built and maintained scalable web applications, ensuring high performance, responsiveness, and scalability.",
-        "Implemented RESTful APIs with DRF and integrated them with React/Next.js frontends.",
-        "Designed and optimized database schemas (MySQL, MongoDB).",
-      ],
-    },
-  ];
-
-  interface Project {
-    title: string;
-    description: string;
-  }
-
-  const projects: Project[] = [
-    {
-      title: "CMEDAI – Real-time Speech Transcriber",
-      description: "Developed a low-latency voice processing system using FastAPI and WebSockets, featuring live transcription with sub-second delay via custom backend Whisper integration. Ensured a secure and scalable architecture.",
-    },
-    {
-      title: "Feedback Generator – AI Career Assistant",
-      description: "Created an AI tool powered by GPT-4 and LangChain for resume analysis. Delivered contextual insights on user profiles and integrated LangChain agents for prompt refinement, improving job shortlist rates for users by 30%.",
-    },
-    {
-      title: "Stock & Options Scanner",
-      description: "Engineered an AWS-powered financial data pipeline for real-time stock and options scanning using polygon.io API. Implemented asynchronous processing and built a dashboard for real-time analytics. Utilized Docker, AWS Lambda, and S3 for infrastructure.",
-    },
-    {
-      title: "Delta Hedging Platform (GitHub)",
-      description: "Developed a platform for Delta Hedge Trading on IG.com, showcasing financial technology application development. (Python)",
-    },
-    {
-      title: "OpenAI Assistant API Chatbot (GitHub)",
-      description: "Built a virtual text assistant powered by OpenAI APIs, Python Flask, and Large Language Models (LLM), demonstrating expertise in conversational AI. (Python)",
-    },
-  ];
-
-  interface Education {
-    degree: string;
-    institution: string;
-    location: string;
-    period: string;
-  }
-
-  const education: Education[] = [
-    {
-      degree: "Bachelor of Engineering (BE), Electronics and Communications Engineering",
-      institution: "Tribhuvan University, IOE, Western Regional Campus",
-      location: "Pokhara, Nepal",
-      period: "2016 – 2021",
-    },
-    {
-      degree: "Higher Secondary – Science",
-      institution: "Einstein Academy",
-      location: "Lalitpur, Nepal",
-      period: "2014 – 2016",
-    },
-  ];
-
-  interface Certification {
-    name: string;
-    issuer: string;
-  }
-
-  const certifications: Certification[] = [
-    { name: "React - The Complete Guide 2024 (incl. Next.js, Redux)", issuer: "Udemy, August 2024" },
-    { name: "Build a Backend REST API with Python & Django - Advanced", issuer: "Udemy, July 2023" },
-    { name: "REST APIs with Flask and Python in 2024", issuer: "Udemy, March 2023" }, // Issuer can be added if known
-  ];
-
-  interface Training {
-    name: string;
-    description: string;
-    issuer: string;
-  }
-
-  const training: Training[] = [
-    {
-      name: "Full Stack Development Bootcamp",
-      description: "Intensive six-month program focusing on Django, Django REST Framework, and ReactJS.",
-      issuer: "IWA Workshop",
-    },
-  ];
-
-
   return (
-    <div className="bg-gray-100 min-h-screen py-8 print:bg-white">
-      <div className="max-w-5xl mx-auto px-6 sm:px-8 md:px-16 py-6 bg-white text-gray-800 shadow-xl rounded-lg print:shadow-none print:rounded-none print:p-0 text-[11pt] sm:text-[12pt] leading-normal print:text-black">
-        <div className="flex justify-end print:hidden my-4">
+    <div className="bg-slate-100 min-h-screen py-10 print:py-0 print:bg-white flex justify-center items-start overflow-auto">
+      <div
+        ref={contentRef}
+        className="w-full max-w-7xl bg-white shadow-2xl print:shadow-none print:w-[210mm] print:max-w-none mx-auto p-[15mm_18mm] text-slate-800 leading-normal"
+        style={{ minHeight: '297mm' }}
+      >
+        <div className="flex justify-end print:hidden mb-6">
           <button
             onClick={handlePrint}
-            className="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors"
+            className="flex items-center gap-2 px-5 py-2.5 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors shadow-sm"
           >
-            Print / Save as PDF
+            <span>Print or Save PDF</span>
           </button>
         </div>
 
-        <header className="flex flex-col sm:flex-row items-center sm:items-end gap-4 sm:gap-6 py-6 border-b border-gray-200">
+        <header className="border-b-2 border-slate-200 pb-6 mb-8 print:pb-4 print:mb-6">
+          <h1 className="text-4xl font-extrabold text-slate-900 mb-2 tracking-tight print:text-3xl">Nirajan Karki</h1>
+          <h2 className="text-xl font-medium text-blue-700 print:text-lg mb-6">Senior Python Developer · Full-Stack Engineer</h2>
 
-          <div className="text-center sm:text-left flex-grow">
-            <h1 className="text-3xl sm:text-4xl font-bold text-blue-800">Nirajan Karki</h1>
-            <h2 className="text-lg sm:text-xl text-blue-600">Senior Python Developer · Full-Stack Engineer</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-base text-slate-600 print:text-sm">
+            <div className="space-y-1.5 flex flex-col items-start justify-end">
+              <div className="flex items-center gap-2 h-6">
+                <MapPin size={16} className="text-blue-600" />
+                <span>Kathmandu, Nepal</span>
+              </div>
+              <div className="flex items-center gap-2 h-6">
+                <Mail size={16} className="text-blue-600" />
+                <a href="mailto:kneeraazon@gmail.com" className="hover:text-blue-700 transition-colors">kneeraazon@gmail.com</a>
+              </div>
+              <div className="flex items-center gap-2 h-6">
+                <Phone size={16} className="text-blue-600" />
+                <span>+977-9844395719</span>
+              </div>
+            </div>
 
-            <div className="text-xs sm:text-sm text-gray-600 mt-2 space-y-1">
-              <p>
-               Kathmandu, Nepal
-              </p>
-              <p>
-                <a className="text-blue-700 hover:underline" href="mailto:kneeraazon@gmail.com" target='_blank' rel="noopener noreferrer">kneeraazon@gmail.com</a>
-                <span className="mx-1 print:hidden">|</span> <span className="sm:hidden"><br/></span> +977-9844395719
-              </p>
-              <p >
-                 <a className="text-blue-700 hover:underline" target='_blank' rel="noopener noreferrer" href="https://kneeraazon.com">kneeraazon.com</a>
-                <span className="mx-1 print:hidden">|</span> <span className="sm:hidden"><br/></span><a className="text-blue-700 hover:underline" target='_blank' rel="noopener noreferrer" href="https://github.com/kneeraazon404">GitHub</a>
-                <span className="mx-1 print:hidden">|</span> <span className="sm:hidden"><br/></span><a className="text-blue-700 hover:underline" target='_blank' rel="noopener noreferrer" href="https://linkedin.com/in/kneeraazon">LinkedIn</a>
-              </p>
+            <div className="space-y-1.5 flex flex-col items-start md:items-end justify-end">
+              <div className="flex items-center gap-2 h-6">
+                <a href="https://kneeraazon.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-blue-700">
+                  <Globe size={16} className="text-blue-600" />
+                  <span>kneeraazon.com</span>
+                </a>
+              </div>
+              <div className="flex items-center gap-2 h-6">
+                <a href="https://github.com/kneeraazon404" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-blue-700">
+                  <Github size={16} className="text-blue-600" />
+                  <span>GitHub</span>
+                </a>
+              </div>
+              <div className="flex items-center gap-2 h-6">
+                <a href="https://linkedin.com/in/kneeraazon" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-blue-700">
+                  <Linkedin size={16} className="text-blue-600" />
+                  <span>LinkedIn</span>
+                </a>
+              </div>
             </div>
           </div>
         </header>
 
-        <Section title=" Professional Summary">
-          <p className="text-sm leading-relaxed text-gray-700">{professionalSummary}</p>
+        <Section title="Professional Summary">
+          <p className="text-base leading-7 text-slate-700 text-justify print:text-xs">
+            {professionalSummary}
+          </p>
+        </Section>
+
+        <Section title="Selected Projects">
+          <div className="grid grid-cols-1 gap-4 print:gap-2">
+            {projects.map((project, index) => (
+              <div key={index} className="break-inside-avoid mb-2 text-justify">
+                <div className="flex justify-between items-baseline mb-1">
+                  <h3 className="font-bold text-slate-900 text-lg">{project.title}</h3>
+                  <span className="text-xs font-mono bg-blue-50 text-blue-700 px-2 py-0.5 rounded print:bg-transparent print:p-0 print:text-slate-600">{project.tech}</span>
+                </div>
+                <p className="text-base text-slate-700 print:text-xs">{project.description}</p>
+              </div>
+            ))}
+          </div>
+        </Section>
+
+        <Section title="Professional Experience">
+          <div className="space-y-4">
+            {experiences.map((exp, index) => (
+              <Entry
+                key={index}
+                title={exp.title}
+                subtitle={`${exp.company} | ${exp.location} | ${exp.period}`}
+                details={exp.details}
+              />
+            ))}
+          </div>
         </Section>
 
         <Section title="Technical Skills">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-sm">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-y-3 gap-x-6 text-base print:text-xs">
             {skills.map((skillSet) => (
-              <div key={skillSet.category} className="bg-blue-50 p-3 rounded-md shadow-sm">
-                <h3 className="font-semibold text-blue-700 mb-1">{skillSet.category}</h3>
-                <ul className="list-disc list-inside space-y-0.5 text-gray-700">
-                  {skillSet.items.map((item) => <li key={item}>{item}</li>)}
+              <div key={skillSet.category} className="break-inside-avoid">
+                <h3 className="font-bold text-slate-900 mb-1">{skillSet.category}</h3>
+                <ul className="text-slate-600 space-y-0.5">
+                  {skillSet.items.map((item) => (
+                    <li key={item} className="before:content-['•'] before:mr-1.5 before:text-blue-400">{item}</li>
+                  ))}
                 </ul>
               </div>
             ))}
           </div>
         </Section>
 
-        <Section title=" Professional Experience">
-          {experiences.map((exp, index) => (
-            <Entry key={index} title={`${exp.title} `} subtitle={`${exp.company} ${exp.location ? `(${exp.location})` : ''} | ${exp.period}`} details={exp.details} />
-          ))}
-        </Section>
-
-        <Section title=" Selected Projects">
-          {projects.map((project, index) => (
-             <div key={index} className="mb-4">
-                <h3 className="text-md font-semibold text-blue-800">{project.title}</h3>
-                <p className="text-sm text-gray-700">{project.description}</p>
-            </div>
-          ))}
-        </Section>
-
-
-        <Section title=" Education">
+        <Section title="Education">
           {education.map((edu, index) => (
-            <Entry key={index} title={edu.degree} subtitle={`${edu.institution}, ${edu.location} | ${edu.period}`} />
-          ))}
-        </Section>
-
-        <Section title=" Certifications">
-          {certifications.map((cert, index) => (
-            <div key={index} className="mb-2 text-sm">
-                <p className="font-medium text-gray-700">{cert.name} {cert.issuer && <span className="text-gray-600 italic"> – {cert.issuer}</span>}</p>
+            <div key={index} className="mb-2 break-inside-avoid">
+              <div className="flex justify-between items-baseline">
+                <h3 className="font-bold text-slate-900 text-lg">{edu.degree}</h3>
+                <span className="text-base text-slate-600 italic">{edu.period}</span>
+              </div>
+              <div className="text-base text-slate-700">{edu.institution}, {edu.location}</div>
             </div>
           ))}
         </Section>
 
-        <Section title="Additional Training">
-          {training.map((train, index) => (
-             <div key={index} className="mb-2 text-sm">
-                <h3 className="font-semibold text-blue-800">{train.name}</h3>
-                <p className="text-gray-700">{train.description} – <span className="italic">{train.issuer}</span></p>
-            </div>
-          ))}
-        </Section>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 print:gap-4">
+          <Section title="Certifications">
+            <ul className="list-none space-y-2 text-base text-slate-700 print:text-xs">
+              {certifications.map((cert, index) => (
+                <li key={index} className="break-inside-avoid">
+                  <span className="font-semibold block text-slate-900">{cert.name}</span>
+                  <span className="text-slate-500 text-sm">{cert.issuer}</span>
+                </li>
+              ))}
+            </ul>
+          </Section>
+
+          <Section title="Additional Training">
+            <ul className="list-none space-y-2 text-base text-slate-700 print:text-xs">
+              {training.map((train, index) => (
+                <li key={index} className="break-inside-avoid">
+                  <div className="font-bold text-slate-900">{train.name}</div>
+                  <div className="text-sm text-slate-500">{train.issuer}</div>
+                  <div className="text-sm mt-0.5">{train.description}</div>
+                </li>
+              ))}
+            </ul>
+          </Section>
+        </div>
       </div>
     </div>
   );

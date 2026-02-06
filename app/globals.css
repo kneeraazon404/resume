@@ -1,20 +1,56 @@
 @import "tailwindcss";
 
-/* Custom print styling */
+/* Professional Resume Styles */
+:root {
+  --color-primary: #1e3a5f;
+  --color-secondary: #2563eb;
+  --color-text: #1f2937;
+  --color-text-muted: #4b5563;
+  --color-border: #e5e7eb;
+  --color-accent: #dbeafe;
+}
+
+/* Base typography improvements */
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    background-color: #f1f5f9; /* slate-100 */
+}
+
+/* A4 Print Styles */
 @media print {
   @page {
-    margin: 0;
-    /* Removes browser headers/footers like date and URL */
+    size: A4 portrait;
+    margin: 0; /* Let the container handle margins */
+  }
+
+  html {
+    font-size: 11pt; /* Slightly smaller for print to fit content better */
   }
 
   body {
-    margin: 1in;
-    /* Optional: add inner margin to the page */
+    background-color: white !important;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
   }
 
-  button,
-  .print\:hidden {
-    display: none !important;
-    /* Hides elements like the Print button */
+  /* Reset container for full page print */
+  .max-w-5xl {
+    max-width: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+  }
+
+  /* Hide headers/footers if browser adds them, though @page usually handles this */
+  /* Ensure clean background */
+  * {
+    background-color: transparent !important;
   }
 }
